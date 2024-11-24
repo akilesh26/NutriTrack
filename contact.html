@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="{% static 'static/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body style="background-color: #008375;">
+    <div class="container">
+        <div class="row" style="margin-top: 100px;">
+            <div class="col-md-5 mx-auto">
+                <div id="second">
+                    <div class="myform form ">
+                        <div class="logo mb-3">
+                            <div class="col-md-12 text-center">
+                                <h1 style="color: white;">Contact</h1>
+                            </div>
+                        </div>
+                        <form action="contact" method="POST" name="additem">
+                            {% csrf_token %}
+                            <div class="form-group" style="color: white;">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text"  name="name" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group" style="color: white;">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email"  name="email" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group" style="color: white;">
+                                <label for="exampleInputEmail1">Subject</label>
+                                <input type="text" name="subject"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Subject">
+                            </div>
+                            <div class="form-group" style="color: white;">
+                                <label for="exampleInputEmail1">Message</label>
+                                <input type="text" name="message" id="contact-msg"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Message">
+                            </div>
+                            <div class="col-md-12 text-center mb-3" style="padding-top: 20px; ">
+                                <button type="submit" class="logbtn" style="background-color: white; color: #008375; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px;">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
