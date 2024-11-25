@@ -1,11 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import user_item, Contact
+from .models import Food, Contact
+from .forms import UploadFileForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def upload_image(request):
+    if request.method=='POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            #pass the image to model
+            #take response from model
+            #make the response part of the context and render it.
+    else:
+        form = UploadFileForm()
+    return render(request,'track.html',{'form':form, 'response': {'apple':'apple','mango':'mango'}})
 
 def login(request):
     if request.method=='POST':
@@ -52,46 +65,6 @@ def register(request):
             return redirect('register')
     else:
         return render(request, 'register.html')
-    
-def wardrobe(request):
-    items = user_item.objects.filter(user=request.user)
-    return render(request, 'wardrobe.html', {'items': items})
-
-def wardrobe_items(request, name):
-    items = user_item.objects.filter(user=request.user).filter(category=name)
-    return render(request, 'wardrobe_items.html', {'items': items, 'name': name})
-
-def delete(request,item_id): 
-    item = get_object_or_404(user_item, id=item_id)
-    if request.method=='POST':
-        item.delete() 
-        previous_page = request.META.get('HTTP_REFERER')
-        if previous_page:
-            return redirect(previous_page)  # Reload the previous page
-        else:
-            return redirect('default-view')
-    return redirect('/wardrobe')
-
-def add(request):
-    if request.method=='POST':
-        category = request.POST['category']
-        brand = request.POST['brand']
-        color = request.POST['color']
-        type = request.POST['type']
-        size = request.POST['size']
-        image = request.FILES.get('image')
-        uio = user_item.objects.create(
-            user = request.user,
-            banner=image,
-            category=category,
-            brand=brand,
-            color=color,
-            type=type,
-            size=size
-        )
-        uio.save()
-        return redirect('/wardrobe')
-    return render(request, 'add-item.html')
 
 def contact(request):
     if request.method=='POST':
@@ -107,3 +80,7 @@ def contact(request):
         )
         return redirect('/')
     return render(request, 'contact.html')
+
+def track(request):
+    form=UploadFileForm()
+    return render(request, 'track.html', {'form':form})
