@@ -121,7 +121,6 @@
         </nav>
 
       </div>
-
     </div>
   </header>
   <div class="upload">
@@ -142,10 +141,27 @@
         <button type="submit"> Show Nutrition Profile</button>
       </form>
   </div>
-  <div>
+  <div class="nutritionSection">
+    <table id="nutritionTable" class="mx-auto">
     {% for key, value in response.items %}
-    <p> {{key}} : {{value}} </p>
+      {% if key == "food" or key == "serving_size" %}
+      <thead>
+        <tr>
+          <th>{{key}}</th>
+          <th>{{value}}</th>
+        </tr>
+      </thead>
+      {% endif %}
+      <tbody>
+      {% if key != "food" and key != "serving_size" %}
+      <tr>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+      </tr>
+      {% endif %}
+    </tbody>
     {% endfor %}
+    </table>
   </div>
 
 

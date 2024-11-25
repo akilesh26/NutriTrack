@@ -8,6 +8,24 @@ from .forms import UploadFileForm
 def index(request):
     return render(request, 'index.html')
 
+def predict(image):
+    #pass the image to model
+    #this prediction is a place holder
+    
+    prediction = {
+        "food": "Grilled Chicken Salad",
+        "serving_size": "1 bowl",
+        "calories": "350",
+        "carbohydrates": "20g",
+        "protein": "30g",
+        "fat": "15g",
+        "fiber": "5g",
+        "sugar": "8g",
+        "sodium": "600mg",
+        "cholesterol": "75mg"
+        }
+    return prediction
+
 def upload_image(request):
     if request.method=='POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -16,9 +34,10 @@ def upload_image(request):
             #pass the image to model
             #take response from model
             #make the response part of the context and render it.
+            response = predict("apple")
     else:
         form = UploadFileForm()
-    return render(request,'track.html',{'form':form, 'response': {'apple':'apple','mango':'mango'}})
+    return render(request,'track.html',{'form':form, 'response':response})
 
 def login(request):
     if request.method=='POST':
