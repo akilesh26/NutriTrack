@@ -8,11 +8,9 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('register', views.register, name='register'),
-    path('wardrobe', views.wardrobe, name='wardrobe'),
-    path('wardrobe/<str:name>', views.wardrobe_items, name='wardrobe_items'),
-    path('wardrobe/delete/<int:item_id>', views.delete, name='delete'),
-    path('wardrobe/add/add-item', views.add, name='add'),
-    path('contact', views.contact, name='contact')
+    path('contact', views.contact, name='contact'),
+    path('track',views.track, name='track'),
+    path('upload_image',views.upload_image, name='upload_image'),
 ]
 
 if settings.DEBUG:

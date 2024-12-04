@@ -1,0 +1,82 @@
+
+.upload{
+    padding-top: 100px;
+    text-align: center;
+    
+}
+
+.upload .hero{
+    padding: 0 0 0 0;
+    justify-content: center;
+    display: flex;
+}
+#drop-area{
+width: 500px;
+height: 300px;
+padding: 30px;
+background: #fff;
+text-align: center;
+border-radius: 20px;
+}
+
+#img-view{
+width: 100%;
+height: 100%;
+border-radius: 20px;
+border: 2px dashed #bbb5ff;
+background: #f7f8ff;
+background-position:center;
+background-size:cover;
+}
+
+#img-view img{
+width: 100px;
+margin-top: 25px;
+}
+#img-view span{
+display: block;
+font-size: 12px;
+color: #777;
+margin-top: 15px;
+}
+
+#nutritionTable{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#nutritionTable thead tr {
+    background-color: #009879;
+    border-bottom: 1px solid #dddddd; ;
+    color: #ffffff;
+    text-align: left;
+}
+
+#nutritionTable th,
+#nutritionTable td{
+    padding: 12px 15px;
+}
+
+
+#nutritionTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+#nutritionTable tbody tr:nth-of-type(even) {
+    background-color: #575151c3;
+}
+
+#nutritionTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+
+#nutritionTable tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
