@@ -30,14 +30,14 @@ def upload_image(request):
     if request.method=='POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            saved_image = form.save()
             #pass the image to model
             #take response from model
             #make the response part of the context and render it.
             response = predict("apple")
     else:
         form = UploadFileForm()
-    return render(request,'track.html',{'form':form, 'response':response})
+    return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
 
 def login(request):
     if request.method=='POST':

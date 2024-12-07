@@ -143,6 +143,11 @@
   </div>
   <div class="nutritionSection">
     <table id="nutritionTable" class="mx-auto">
+      <tr>
+        <td colspan="2" id="foodimagecontainer">
+        <img src="{{fooditem}}" id="foodimage" >
+        </td>
+      </tr>
     {% for key, value in response.items %}
       {% if key == "food" or key == "serving_size" %}
       <thead>
