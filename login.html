@@ -15,33 +15,33 @@
 </head>
 <body style="background-color: #008375;">
    <div class="container">
-      <div class="row" style="margin-top: 200px;">
+      <div class="row" style="margin-top: 130px;">
          <div class="col-md-5 mx-auto">
             <div id="first">
-               <div class="myform form ">
+               <div class="myform form" style="background-color: white; padding: 50px; border-radius: 15px;">
                   <div class="logo mb-3">
-                     <div class="col-md-12 text-center" style="color: white">
+                     <div class="col-md-12 text-center" style="color:#008375">
                         <h1>Login</h1>
                      </div>
                   </div>
                   {% for msg in messages %}
-                     <h3 style="color: rgb(255, 255, 255);">{{ msg }}</h3>
+                     <h3 style="color:#008375">{{ msg }}</h3>
                   {% endfor %}
                   <form action="login" method="POST" name="login">
                      {% csrf_token %}
-                     <div class="form-group" style="color: white;">
+                     <div class="form-group" style="color:#008375;">
                         <label for="exampleInputEmail1">Username</label>
                         <input type="text" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Username">
                      </div>
                      <div class="form-group">
-                        <label for="exampleInputEmail1" style="color: white;">Password</label>
+                        <label for="exampleInputEmail1" style="color:#008375">Password</label>
                         <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                      </div>
                      <div class="col-md-12 text-center " style="margin-top: 40px;">
-                        <button type="submit" class="logbtn" style="background-color: white; color: #008375; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px;">Login</button>
+                        <button type="submit" class="logbtn" style="background-color: #008375; color: white; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px; border: none;">Login</button>
                      </div>
-                     <div class="form-group1" style="margin-top: 20px;">
-                        <p class="text-center">Don't have an account? <a href="register" id="signup" style="color: white;">Sign up here</a></p>
+                     <div class="form-group1" style="margin-top: 20px; padding-left: 40px;">
+                        <p>Don't have an account? <a href="register" id="signup" style="color:#008375">Sign up here</a></p>
                      </div>
                   </form>
                </div>

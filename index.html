@@ -126,7 +126,7 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section accent-background">
+    <section id="hero" class="hero section accent-background" style="padding-bottom: 30px;">
 
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5 justify-content-between">
@@ -135,7 +135,7 @@
             <h2><span>Welcome to </span><span class="accent">NutriTrack</span></h2>
             <p>Your health, Our priority. NutriTrack empowers you to track your daily nutritional intake effortlessly. </p>
             <div class="d-flex">
-              <a href="#about" class="btn-get-started">Tracker</a>
+              <a href="/track" class="btn-get-started">Tracker</a>
               <!--<a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
             </div>
             {% else %}
@@ -152,7 +152,7 @@
           </div>
         </div>
       </div>
-
+      <!--
       <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
         <div class="container position-relative">
           <div class="row gy-4 mt-5">
@@ -162,33 +162,33 @@
                 <div class="icon"><i class="bi bi-egg-fill"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Calorie Tracker</a></h4>
               </div>
-            </div><!--End Icon Box -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-laptop"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Log Your Meals</a></h4>
               </div>
-            </div><!--End Icon Box -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-lightbulb-fill"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Meal Planning</a></h4>
               </div>
-            </div><!--End Icon Box -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-person-arms-up"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Fitness Integration</a></h4>
               </div>
-            </div><!--End Icon Box -->
+            </div>
 
           </div>
         </div>
       </div>
-
+    -->
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
@@ -207,13 +207,13 @@
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3>OUR MISSION</h3>
             <img src="https://www.nutritionistseemasingh.com/wp-content/uploads/2023/06/11-Benefits-of-Nutrition-Tracking.jpeg" class="img-fluid rounded-4 mb-4" alt="">
-            <h3>OUR STORY</h3>
+            <h3 style="margin-top: 50px;">OUR STORY</h3>
             <p>NutriTrack began as a solution to a common problem: navigating the overwhelming world of nutrition and diet management. Our founders recognized that while countless apps and resources existed, most were either overly complex or lacked the customization needed to suit individual needs.</p>
             <p>From fitness enthusiasts to busy parents, students, and individuals managing specific health conditions, NutriTrack is built to be a supportive partner on anyone’s wellness journey. Today, we are proud to help users worldwide take control of their health, one meal at a time.</p>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
             <div class="content ps-0 ps-lg-5">
-              <p>
+              <p style="margin-top: 50px;">
                 At NutriTrack, our mission is to empower 
                 individuals to lead healthier, happier lives through informed nutrition choices. We aim to:
               </p>
@@ -843,7 +843,7 @@
     </section><!-- /Faq Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="contact" class="contact section" style="padding-bottom: 75px;">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -855,8 +855,8 @@
 
         <div class="row gx-lg-0 gy-4">
 
-          <div class="col-lg-4">
-            <div class="info-container d-flex flex-column align-items-center justify-content-center">
+          <div class="col-lg-12">
+            <div class="info-container d-flex flex-column align-items-center justify-content-center" style="margin-bottom: 30px;">
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
@@ -890,47 +890,16 @@
               </div>--><!-- End Info Item -->
 
             </div>
-
+            <div class="Send-button">
+              <a href="/contact"><button class="add-item" data-aos="fade-up" data-aos-delay="500" style="background-color: #008374; margin-left: 50px; color: white; border-radius: 25px; border: none; padding: 10px;">Send Message</button></a>
+            </div>
           </div>
-
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade" data-aos-delay="100">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="8" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
+          
         </div>
-
+        
       </div>
-
+      
     </section><!-- /Contact Section -->
-
   </main>
 
   <footer id="footer" class="footer accent-background">

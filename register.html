@@ -15,47 +15,47 @@
 </head>
 <body style="background-color: #008375">
     <div class="container">
-        <div class="row" style="margin-top: 100px;">
+        <div class="row" style="margin-top: 30px;">
             <div class="col-md-5 mx-auto">
                 <div id="second">
-                    <div class="myform form ">
+                    <div class="myform form " style="background-color: white; padding: 50px; border-radius: 15px;">
                         <div class="logo mb-3">
                             <div class="col-md-12 text-center">
-                                <h1 style="color: white;">Sign Up</h1>
+                                <h1 style="color:#008375;">Sign Up</h1>
                             </div>
                         </div>
                         <form action="register" method="POST" name="registration">
                             {% csrf_token %}
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">First Name</label>
                                 <input type="text"  name="fname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
                             </div>
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">Last Name</label>
                                 <input type="text"  name="lname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
                             </div>
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">Username</label>
                                 <input type="text" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter username">
                             </div>
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">Password</label>
                                 <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                             </div>
-                            <div class="form-group" style="color: white;">
+                            <div class="form-group" style="color:#008375;">
                                 <label for="exampleInputEmail1">Repeat Password</label>
                                 <input type="password" name="password_r" id="password1"  class="form-control" aria-describedby="emailHelp" placeholder="Repeat Password">
                             </div>
                             <div class="col-md-12 text-center mb-3" style="margin-top: 40px;">
-                                <button type="submit" class="logbtn" style="background-color: white; color: #008375; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px;">Sign Up</button>
+                                <button type="submit" class="logbtn" style="background-color:#008375; color: white; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px; border: none;">Sign Up</button>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="form-group" style="margin-top: 20px;">
-                                    <p class="text-center">Already have an account? <a href="login" id="signin" style="color: white;"> Login</a></p>
+                                    <p class="text-center">Already have an account? <a href="login" id="signin" style="color:#008375;"> Login</a></p>
                                 </div>
                             </div>
                         </form>
