@@ -3,38 +3,88 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Food, Contact
 from .forms import UploadFileForm
+import torch
+from torchvision import models,transforms,datasets
+from PIL import Image
+import requests
+import json
+from django.conf import settings
 
-# Create your views here.
+#Load And Set ML model
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+loaded_model = models.resnet50(weights=None)  # Define the architecture
+loaded_model.fc = torch.nn.Linear(loaded_model.fc.in_features, 101)  # Adjust for your dataset
+loaded_model.load_state_dict(torch.load('img_classifier3.pth',map_location=device))  # Load the saved weights
+loaded_model.to(device)  # Move the model to the appropriate device
+loaded_model.eval()
+
+data_transforms = {
+    'train': transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ]),
+    'val': transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ]),
+}
+BASE_URL = BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
+
+#labels = datasets.Food101(root='./data', split='test', download=True, transform=data_transforms['val'])
+
 def index(request):
     return render(request, 'index.html')
 
-def predict(image):
-    #pass the image to model
-    #this prediction is a place holder
+def fetchNutritionalProfile(food_name):
+    #foodLabel might need reformating
+    food_name="Cheddar Cheese"
+    search_url = f"{BASE_URL}foods/search?query={food_name}&api_key={settings.API_KEY}"
+    response = requests.get(search_url)
     
-    prediction = {
-        "food": "Grilled Chicken Salad",
-        "serving_size": "1 bowl",
-        "calories": "350",
-        "carbohydrates": "20g",
-        "protein": "30g",
-        "fat": "15g",
-        "fiber": "5g",
-        "sugar": "8g",
-        "sodium": "600mg",
-        "cholesterol": "75mg"
-        }
-    return prediction
+    if response.status_code == 200:
+        data = response.json()
+        if data['foods']:
+            food_data = data['foods'][0]
+            food_id = food_data['fdcId']
+            detail_url = f"{BASE_URL}food/{food_id}?api_key={settings.API_KEY}"
+            detail_response = requests.get(detail_url)
+            if detail_response.status_code == 200:
+                detail_data = detail_response.json()
+                nutrients = detail_data.get('foodNutrients', [])
+                nutrition_info={'Food':food_name,"Portion Size":f"{detail_data.get('servingSize')} {detail_data.get('servingSizeUnit')}"}
+                for dict in nutrients:
+                    if dict["type"]=="FoodNutrient": 
+                        nutrition_info[ dict["nutrient"]["name"] ] = f"{dict["amount"]} {dict["nutrient"]["unitName"]}"
+                return nutrition_info
+        else:
+            print("Food item not found.")
+    else:
+        print("Error in the API request.")
+    return None
+
+def predict(image_path):
+    image = Image.open(image_path).convert('RGB')
+    image = data_transforms['val'](image).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        outputs = loaded_model(image)
+        _, predicted = torch.max(outputs, 1)
+        #predicted_label = labels[predicted.item()]
+        #Once the dataset is downloaded, i have to uncomment above line, and comment below line.
+        predicted_label = predicted.item()
+    return predicted_label
 
 def upload_image(request):
     if request.method=='POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             saved_image = form.save()
-            #pass the image to model
-            #take response from model
-            #make the response part of the context and render it.
-            response = predict("apple")
+            response = fetchNutritionalProfile(predict(saved_image.image.path))
     else:
         form = UploadFileForm()
     return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})

@@ -2,3 +2,7 @@ env
 **__pycache__/
 .venv/
 media/
+*.ipynb
+.ipynb_checkpoints/
+test2.py
+.env

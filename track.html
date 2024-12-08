@@ -149,7 +149,7 @@
         </td>
       </tr>
     {% for key, value in response.items %}
-      {% if key == "food" or key == "serving_size" %}
+      {% if key == "Food" or key == "Portion Size" %}
       <thead>
         <tr>
           <th>{{key}}</th>
@@ -158,7 +158,7 @@
       </thead>
       {% endif %}
       <tbody>
-      {% if key != "food" and key != "serving_size" %}
+      {% if key != "Food" and key != "Portion Size" %}
       <tr>
         <td>{{key}}</td>
         <td>{{value}}</td>
