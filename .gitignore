@@ -1,4 +1,5 @@
 .env
+*.sqlite3
 data/food-101.tar.gz
 media/pics
 data/
