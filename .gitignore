@@ -1,5 +1,6 @@
 .env
 data/food-101.tar.gz
+media/pics
 data/
 env
 **__pycache__/
