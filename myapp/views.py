@@ -35,13 +35,14 @@ data_transforms = {
 }
 BASE_URL = BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
 
-labels = datasets.Food101(root='./data', split='test', download=True, transform=data_transforms['val'])
+labels = datasets.Food101(root='./data', split='test', download=True, transform=data_transforms['val']).classes
 
 def index(request):
     return render(request, 'index.html')
 
 def fetchNutritionalProfile(food_name):
-    print(food_name)
+    food_name=food_name.replace("_"," ")
+
     search_url = f"{BASE_URL}foods/search?query={food_name}&api_key={settings.API_KEY}"
     response = requests.get(search_url)
     
