@@ -1,4 +1,11 @@
+.env
+data/food-101.tar.gz
+media/pics
+data/
 env
 **__pycache__/
 .venv/
 media/
+*.ipynb
+.ipynb_checkpoints/
+test2.py
