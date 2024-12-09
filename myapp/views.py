@@ -35,14 +35,13 @@ data_transforms = {
 }
 BASE_URL = BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
 
-#labels = datasets.Food101(root='./data', split='test', download=True, transform=data_transforms['val'])
+labels = datasets.Food101(root='./data', split='test', download=True, transform=data_transforms['val'])
 
 def index(request):
     return render(request, 'index.html')
 
 def fetchNutritionalProfile(food_name):
-    #foodLabel might need reformating
-    food_name="Cheddar Cheese"
+    print(food_name)
     search_url = f"{BASE_URL}foods/search?query={food_name}&api_key={settings.API_KEY}"
     response = requests.get(search_url)
     
@@ -64,7 +63,7 @@ def fetchNutritionalProfile(food_name):
         else:
             print("Food item not found.")
     else:
-        print("Error in the API request.")
+        print("Error in the API request.",response.status_code)
     return None
 
 def predict(image_path):
@@ -74,9 +73,9 @@ def predict(image_path):
     with torch.no_grad():
         outputs = loaded_model(image)
         _, predicted = torch.max(outputs, 1)
-        #predicted_label = labels[predicted.item()]
+        predicted_label = labels[predicted.item()]
         #Once the dataset is downloaded, i have to uncomment above line, and comment below line.
-        predicted_label = predicted.item()
+        #predicted_label = predicted.item()
     return predicted_label
 
 def upload_image(request):
