@@ -9,6 +9,7 @@ from PIL import Image
 import requests
 import json
 from django.conf import settings
+from google.cloud import vision
 
 #Load And Set ML model
 
@@ -39,6 +40,25 @@ labels = datasets.Food101(root='./data', split='test', download=True, transform=
 
 def index(request):
     return render(request, 'index.html')
+
+def is_food_image(image_path):
+    """Check if the image contains food using Google Vision API."""
+    client = vision.ImageAnnotatorClient()
+
+    with open(image_path, "rb") as image_file:
+        content = image_file.read()
+    image = vision.Image(content=content)
+
+    # Perform label detection
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+
+    # Check if any label indicates food
+    for label in labels:
+        if "food" in label.description.lower() or "dish" in label.description.lower():
+            return True
+    return False
+
 
 def fetchNutritionalProfile(food_name):
     food_name=food_name.replace("_"," ")
@@ -75,8 +95,6 @@ def predict(image_path):
         outputs = loaded_model(image)
         _, predicted = torch.max(outputs, 1)
         predicted_label = labels[predicted.item()]
-        #Once the dataset is downloaded, i have to uncomment above line, and comment below line.
-        #predicted_label = predicted.item()
     return predicted_label
 
 def upload_image(request):
@@ -84,7 +102,11 @@ def upload_image(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             saved_image = form.save()
-            response = fetchNutritionalProfile(predict(saved_image.image.path))
+            if is_food_image(saved_image.image.path):
+                response = fetchNutritionalProfile(predict(saved_image.image.path))
+                response["IsFoodImage"]=True
+            else:
+                response = {"IsFoodImage":False}
     else:
         form = UploadFileForm()
     return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
