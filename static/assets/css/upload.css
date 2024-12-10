@@ -93,3 +93,12 @@ margin-top: 15px;
     width: 100%;
     margin:auto;
 }
+
+.nutritionSection{
+    text-align: center;
+}
+#notfoodimgMSG{
+    padding:20rem;
+    height: 1.2em;
+    text-align: center;
+}

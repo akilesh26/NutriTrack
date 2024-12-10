@@ -88,33 +88,44 @@
       </form>
   </div>
   <div class="nutritionSection">
-    <table id="nutritionTable" class="mx-auto">
-    {% if response.items %}
-      <tr>
-        <td colspan="2" id="foodimagecontainer">
-        <img src="{{fooditem}}" id="foodimage" >
-        </td>
-      </tr>
+    {% if response.IsFoodImage %}
+        <table id="nutritionTable" class="mx-auto">
+          <tr>
+            <td colspan="2" id="foodimagecontainer">
+            <img src="{{fooditem}}" id="foodimage" >
+            </td>
+          </tr>
+        {% for key, value in response.items %}
+          {% if key == "Food" or key == "Portion Size" %}
+          <thead>
+            <tr>
+              <th>{{key}}</th>
+              <th>{{value}}</th>
+            </tr>
+          </thead>
+          {% endif %}
+          <tbody>
+          {% if key != "Food" and key != "Portion Size" %}
+          <tr>
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+          </tr>
+          {% endif %}
+        </tbody>
+        {% endfor %}
+        </table>
     {% endif %}
-    {% for key, value in response.items %}
-      {% if key == "Food" or key == "Portion Size" %}
-      <thead>
-        <tr>
-          <th>{{key}}</th>
-          <th>{{value}}</th>
-        </tr>
-      </thead>
-      {% endif %}
-      <tbody>
-      {% if key != "Food" and key != "Portion Size" %}
-      <tr>
-        <td>{{key}}</td>
-        <td>{{value}}</td>
-      </tr>
-      {% endif %}
-    </tbody>
-    {% endfor %}
-    </table>
+    {% if response.IsFoodImage is False %}
+    <div class="container">
+      <div class = "row justify-content-center">
+        <div style="width:500px">
+          <div class="alert alert-warning mt-3" role="alert" >
+            Please Upload Food Images
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
   </div>
 
 

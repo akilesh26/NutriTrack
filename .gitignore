@@ -2,6 +2,7 @@
 data/food-101.tar.gz
 media/pics
 data/
+cogent-script-427503-b2-dc57bd5d0919.json
 env
 **__pycache__/
 .venv/
@@ -9,3 +10,5 @@ media/
 *.ipynb
 .ipynb_checkpoints/
 test2.py
+unified-chess-372007-383a904654dd.json
+valiant-well-444307-p4-2bcaf19c0bc9.json
