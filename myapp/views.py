@@ -99,17 +99,29 @@ def predict(image_path):
 
 def upload_image(request):
     if request.method=='POST':
+        print("POST METHOD RECIEVED")
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            saved_image = form.save()
+            print("Form is valid")
+            saved_image = form.save(commit=False)
+            saved_image.user = request.user
+            saved_image.nutrition={}
+            saved_image.save()
             if is_food_image(saved_image.image.path):
                 response = fetchNutritionalProfile(predict(saved_image.image.path))
                 response["IsFoodImage"]=True
+                saved_image.nutrition = response
+                saved_image.save()
             else:
                 response = {"IsFoodImage":False}
+                saved_image.nutrition = response
+                saved_image.save()
+            return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
+        else:
+            print(form.errors)
+            return redirect('track')
     else:
-        form = UploadFileForm()
-    return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
+        return redirect('track')
 
 def login(request):
     if request.method=='POST':

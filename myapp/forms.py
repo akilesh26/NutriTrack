@@ -4,7 +4,7 @@ from .models import Food
 class UploadFileForm(forms.ModelForm):
     class Meta:
         model = Food
-        fields = "__all__"
+        fields = ['image']
         widgets = {
             'image': forms.ClearableFileInput(attrs={
                 'type': 'file',
