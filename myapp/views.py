@@ -172,6 +172,9 @@ def contact(request):
         return redirect('/')
     return render(request, 'contact.html')
 
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
 def track(request):
     form=UploadFileForm()
     return render(request, 'track.html', {'form':form})
