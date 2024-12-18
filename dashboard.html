@@ -30,7 +30,7 @@
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
   <!-- drag and drop css-->
-  <link href="{% static 'assets/css/upload.css' %}" rel="stylesheet" defer>
+  <link href="{% static 'assets/css/dashboard.css' %}" rel="stylesheet" defer>
 </head>
 <body class="track-page">
 
@@ -69,15 +69,19 @@
     </div>
   </header>
   <main>
-    <p> {{username}}'s Dashboard </p>
-    {% for food in foods %}
-    <div> 
-        <!-- foodname -->
-        <!-- foodpicture -->
-        <!-- protien -->
-        <!-- carbohydrate -->
-        <!-- Fats -->
-    </div>
+    <p> {{user.username}}'s Dashboard </p>
+    {% for date, f in foods.items %}
+      <p> {{date}} </p>
+      {% for food in f %}
+        <div> 
+            <p> {{food.name}} </p>
+            <img src="{{food.image.url}}" alt="food image" style="width: 100px; height: 100px;">
+            <p> Energy: {{food.nutrition.Energy}}</p>
+            <p> Protein: {{food.nutrition.Protein}}</p>
+            <p> Carbohydrate: {{food.nutrition.Carbohydrate}}</p>
+            <p> Fats: {{food.nutrition.Fat}} </p>
+        </div>
+      {% endfor %}
     {% endfor %}
 
   </main>

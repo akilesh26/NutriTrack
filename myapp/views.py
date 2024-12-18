@@ -10,6 +10,7 @@ import requests
 import json
 from django.conf import settings
 from google.cloud import vision
+from collections import defaultdict
 
 #Load And Set ML model
 
@@ -99,24 +100,33 @@ def predict(image_path):
 
 def upload_image(request):
     if request.method=='POST':
-        print("POST METHOD RECIEVED")
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            print("Form is valid")
             saved_image = form.save(commit=False)
             saved_image.user = request.user
             saved_image.nutrition={}
             saved_image.save()
             if is_food_image(saved_image.image.path):
-                response = fetchNutritionalProfile(predict(saved_image.image.path))
+                name = predict(saved_image.image.path)
+                response = fetchNutritionalProfile(name)
                 response["IsFoodImage"]=True
+
+                if "Carbohydrate, by difference" in response:
+                    response["Carbohydrate"] = response.pop("Carbohydrate, by difference")
+
+                if "Total lipid (fat)" in response:
+                    response["Fat"] = response.pop("Total lipid (fat)")
+
+                saved_image.name = name
                 saved_image.nutrition = response
                 saved_image.save()
+                print(json.dumps(response, indent=4))
+                return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
             else:
+                saved_image.delete()
+                form=UploadFileForm()
                 response = {"IsFoodImage":False}
-                saved_image.nutrition = response
-                saved_image.save()
-            return render(request,'track.html',{'form':form, 'response':response, 'fooditem':saved_image.image.url})
+                return render(request,'track.html',{'form':form, 'response':response})
         else:
             print(form.errors)
             return redirect('track')
@@ -185,7 +195,13 @@ def contact(request):
     return render(request, 'contact.html')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    foods = Food.objects.filter(user=request.user).order_by('-created_at')
+    grouped_food = defaultdict(list)
+    for food in foods:
+        grouped_food[food.created_at.date()].append(food)
+
+    grouped_food = dict(grouped_food)
+    return render(request, 'dashboard.html', {'foods':grouped_food, 'user':request.user})
 
 def track(request):
     form=UploadFileForm()
