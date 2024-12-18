@@ -69,10 +69,37 @@
     </div>
   </header>
   <main>
-    <p> {{user.username}}'s Dashboard </p>
+    <h2> {{user.username}}'s Dashboard </h2>
     {% for date, f in foods.items %}
       <p> {{date}} </p>
       {% for food in f %}
+          <div class="card mb-3 over" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{food.image.url}}" class="card-img" alt="Food Image">
+                <h5 class="card-title">{{food.name}}</h5>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <p class="card-text">Energy</p>
+                      <p class="card-text">Carbohydrate</p>
+                      <p class="card-text">Protein</p>
+                      <p class="card-text">Fats</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="card-text">{{food.nutrition.Energy}}</p>
+                      <p class="card-text">{{food.nutrition.Carbohydrate}}</p>
+                      <p class="card-text">{{food.nutrition.Protein}}</p>
+                      <p class="card-text">{{food.nutrition.Fat}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--
         <div> 
             <p> {{food.name}} </p>
             <img src="{{food.image.url}}" alt="food image" style="width: 100px; height: 100px;">
@@ -81,6 +108,7 @@
             <p> Carbohydrate: {{food.nutrition.Carbohydrate}}</p>
             <p> Fats: {{food.nutrition.Fat}} </p>
         </div>
+      -->
       {% endfor %}
     {% endfor %}
 
