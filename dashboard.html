@@ -70,6 +70,12 @@
   </header>
   <main>
     <h2> {{user.username}}'s Dashboard </h2>
+    {% if not foods %}
+      <div class = "emptyDashboard">
+      <img src="{% static 'assets/img/empty-dashboard.png' %}" style="width: 30%; height: 30%;">
+      <p style="padding: 20px; margin:20px;"> No food added yet </p>
+      </div>
+    {% endif %}
     {% for date, f in foods.items %}
       <p> {{date}} </p>
       {% for food in f %}
