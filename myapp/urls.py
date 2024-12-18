@@ -11,6 +11,7 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('track',views.track, name='track'),
     path('upload_image',views.upload_image, name='upload_image'),
+    path('dashboard',views.dashboard, name='dashboard'),
 ]
 
 if settings.DEBUG:
