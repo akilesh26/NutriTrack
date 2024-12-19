@@ -17,7 +17,7 @@ from collections import defaultdict
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 loaded_model = models.resnet50(weights=None)  # Define the architecture
 loaded_model.fc = torch.nn.Linear(loaded_model.fc.in_features, 101)  # Adjust for your dataset
-loaded_model.load_state_dict(torch.load('img_classifier3.pth',map_location=device))  # Load the saved weights
+loaded_model.load_state_dict(torch.load('img_classifier_weight.pth',map_location=device))  # Load the saved weights
 loaded_model.to(device)  # Move the model to the appropriate device
 loaded_model.eval()
 
