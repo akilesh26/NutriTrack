@@ -12,13 +12,22 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body style="background-color: #008375">
     <div class="container">
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-5 mx-auto">
+        <div class="row" >
+            <div class="col-md-10 mx-auto">
                 <div id="second">
-                    <div class="myform form " style="background-color: white; padding: 50px; border-radius: 15px;">
+                    <div class="myform form " style="background-color: white; padding: 30px; border-radius: 15px;">
                         <div class="logo mb-3">
                             <div class="col-md-12 text-center">
                                 <h1 style="color:#008375;">Sign Up</h1>
@@ -26,38 +35,115 @@
                         </div>
                         <form action="register" method="POST" name="registration">
                             {% csrf_token %}
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">First Name</label>
-                                <input type="text"  name="fname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                            </div>
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">Last Name</label>
-                                <input type="text"  name="lname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
-                            </div>
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter username">
-                            </div>
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-                            </div>
-                            <div class="form-group" style="color:#008375;">
-                                <label for="exampleInputEmail1">Repeat Password</label>
-                                <input type="password" name="password_r" id="password1"  class="form-control" aria-describedby="emailHelp" placeholder="Repeat Password">
-                            </div>
-                            <div class="col-md-12 text-center mb-3" style="margin-top: 40px;">
-                                <button type="submit" class="logbtn" style="background-color:#008375; color: white; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px; border: none;">Sign Up</button>
-                            </div>
-                            <div class="col-md-12 ">
-                                <div class="form-group" style="margin-top: 20px;">
-                                    <p class="text-center">Already have an account? <a href="login" id="signin" style="color:#008375;"> Login</a></p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" style="color:#008375">
+                                    <label for="exampleInputEmail1">First Name</label>
+                                    <input
+                                      type="text"
+                                      name="fname"
+                                      class="form-control"
+                                      id="firstname"
+                                      aria-describedby="emailHelp"
+                                      placeholder="Enter Firstname"
+                                    />
+                                  </div>
                                 </div>
-                            </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" style="color:#008375">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    <input
+                                      type="text"
+                                      name="lname"
+                                      class="form-control"
+                                      id="lastname"
+                                      aria-describedby="emailHelp"
+                                      placeholder="Enter Lastname"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group" style="color:#008375">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input
+                                  type="email"
+                                  name="email"
+                                  class="form-control"
+                                  id="email"
+                                  aria-describedby="emailHelp"
+                                  placeholder="Enter email"
+                                />
+                              </div>
+                              <div class="form-group" style="color:#008375">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input
+                                  type="text"
+                                  name="username"
+                                  class="form-control"
+                                  id="username"
+                                  aria-describedby="emailHelp"
+                                  placeholder="Enter username"
+                                />
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" style="color:#008375">
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <input
+                                      type="password"
+                                      name="password"
+                                      id="password"
+                                      class="form-control"
+                                      aria-describedby="emailHelp"
+                                      placeholder="Enter Password"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" style="color:#008375">
+                                    <label for="exampleInputEmail1">Repeat Password</label>
+                                    <input
+                                      type="password"
+                                      name="password_r"
+                                      id="password1"
+                                      class="form-control"
+                                      aria-describedby="emailHelp"
+                                      placeholder="Repeat Password"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="col-md-12 text-center mb-3"
+                                style="margin-top: 40px"
+                              >
+                                <button
+                                  type="submit"
+                                  class="btn btn-block mybtn btn-primary tx-tfm"
+                                  style="
+                                    background-color:#008375;
+                                    color: white;
+                                    border-radius: 25px;
+                                    border: none;
+                                  "
+                                >
+                                  Sign Up
+                                </button>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group" style="margin-top: 20px">
+                                  <p class="text-center">
+                                    Already have an account?
+                                    <a
+                                      href="login"
+                                      id="signin"
+                                      style="color:#008375"
+                                    >
+                                      Login</a
+                                    >
+                                  </p>
+                                </div>
+                              </div>
                         </form>
                     </div>
                 </div>

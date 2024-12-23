@@ -13,11 +13,20 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .container {
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         -webkit-transform: translate(-50%, -50%);
+         transform: translate(-50%, -50%);
+      }
+    </style>
 </head>
 <body style="background-color: #008375;">
     <div class="container">
-        <div class="row" style="margin-top: 75px;">
-            <div class="col-md-5 mx-auto">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
                 <div id="second">
                     <div class="myform form " style="background-color: white; padding: 50px; border-radius: 15px;">
                         <div class="logo mb-3">
@@ -44,7 +53,7 @@
                                 <input type="text" name="message" id="contact-msg"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Message">
                             </div>
                             <div class="col-md-12 text-center mb-3" style="padding-top: 20px; ">
-                                <button type="submit" class="logbtn" style="background-color:#008375; color: white; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; font-size: large; width: 200px; border: none;">Submit</button>
+                                <button type="submit" class="logbtn col-md-8" style="background-color:#008375; color: white; border-radius: 25px; padding-top: 5px; padding-bottom: 5px; border: none;">Submit</button>
                             </div>
                         </form>
                     </div>
