@@ -31,6 +31,8 @@
 
   <!-- drag and drop css-->
   <link href="{% static 'assets/css/upload.css' %}" rel="stylesheet" defer>
+
+  <script src="{% static 'assets/js/camera.js' %}" defer></script>
 </head>
 
 <body class="track-page">
@@ -74,6 +76,12 @@
         <h1>UPLOAD PICTURE</h1>
         <form method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
             {% csrf_token %}
+        <div class="CameraInput">
+          <video id="video">
+          </video>
+          <canvas id="canvas" style="display:none;"></canvas>
+          <button id="click" style="background-color: #009879; color: white; border-radius: 25px; border: none; padding: 10px;"> Capture </button>
+        <div>
         <div class="hero">
           <label for="input-file" id="drop-area"> 
             <!--<input type="file" accept="image/*" id="input-file" hidden name="image">-->
@@ -85,7 +93,7 @@
             </div>
           </label>
         </div>
-        <button type="submit" style="background-color: #009879; color: white; border-radius: 25px; border: none; padding: 10px;"> Show Nutrition Profile</button>
+        <button onclick="checkAndTriggerClick()" type="submit" style="background-color: #009879; color: white; border-radius: 25px; border: none; padding: 10px;"> Show Nutrition Profile</button>
       </form>
   </div>
   <div class="nutritionSection">

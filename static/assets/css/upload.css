@@ -85,7 +85,6 @@ margin-top: 15px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    width:
 }
 
 #foodimage{
@@ -101,4 +100,25 @@ margin-top: 15px;
     padding:20rem;
     height: 1.2em;
     text-align: center;
+}
+
+.CameraInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.CameraInput > button#click {
+    border : none;
+    padding: 20px;
+    margin: 20px;
+    width:20vh;
+    display: none;
+}
+
+#video{
+    width:400px;
+    height: auto;
 }
