@@ -80,7 +80,7 @@ def fetchNutritionalProfile(food_name):
                 nutrition_info={'Food':food_name,"Portion Size":f"{detail_data.get('servingSize')} {detail_data.get('servingSizeUnit')}"}
                 for dict in nutrients:
                     if dict["type"]=="FoodNutrient": 
-                        nutrition_info[ dict["nutrient"]["name"] ] = f"{dict["amount"]} {dict["nutrient"]["unitName"]}"
+                        nutrition_info[ dict['nutrient']['name'] ] = f"{dict['amount']} {dict['nutrient']['unitName']}"
                 return nutrition_info
         else:
             print("Food item not found.")
